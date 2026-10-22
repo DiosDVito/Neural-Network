@@ -7,20 +7,25 @@ Red neuronal programada **desde 0 en NumPy** (sin Keras ni TensorFlow) que clasi
 
 La interfaz es una app de **Streamlit** con mapas, entrenamiento, predicción y una sección de validación de las épocas 0 y 1.
 
-Autor: Daniel Esparza Arizpe (A01637076)
-
 ## Cómo correrla
 
-Desde la raíz del repositorio:
-
 ```bash
-cd /Users/danielesparzarizpe/Developer/TEC/Compiladores
 python3 -m venv .venv
-.venv/bin/pip install -r RedNeuronal/requirements.txt
-.venv/bin/streamlit run RedNeuronal/redneuronal.py
+source .venv/bin/activate
+pip install -r RedNeuronal/requirements.txt
+streamlit run RedNeuronal/redneuronal.py
 ```
 
-Se abre en [http://localhost:8501](http://localhost:8501). En la barra lateral pulsa **Entrenar red**. Más abajo está **Ejecutar validación**.
+En Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r RedNeuronal\requirements.txt
+streamlit run RedNeuronal\redneuronal.py
+```
+
+La app queda en `http://localhost:8501`. En la barra lateral pulsa **Entrenar red**. Más abajo está **Ejecutar validación**.
 
 ## Qué hace
 
@@ -39,21 +44,21 @@ lat, lon  →  ReLU[4]  →  ReLU[8]  →  Sigmoid[1]  →  0 = Monterrey, 1 = L
 
 El accuracy suele llegar a ~100% porque las dos ciudades están muy lejos y casi no se solapan.
 
-## Archivos
+## Estructura
 
-| Archivo | Rol |
-|---|---|
-| `redneuronal.py` | App Streamlit |
-| `modelo.py` | Capa, activaciones, MSE, forward, backprop |
-| `datos.py` | Lectura de CSV y normalización |
-| `mapas.py` | Mapas Folium / OpenStreetMap |
-| `validacion.py` | Trazas de épocas 0 y 1 |
-| `monterrey.csv` | 150 puntos GPS de Monterrey (`lat`, `lon`) |
-| `lille.csv` | 150 puntos GPS de Lille (`lat`, `lon`) |
-| `validacion_epocas_0_1.txt` | Salida de la validación |
-| `requirements.txt` | Dependencias |
+```text
+RedNeuronal/
+  redneuronal.py     App Streamlit
+  modelo.py          Capa, activaciones, MSE, forward, backprop
+  datos.py           Lectura de CSV y normalización
+  mapas.py           Mapas Folium / OpenStreetMap
+  validacion.py      Trazas de épocas 0 y 1
+  monterrey.csv      150 puntos GPS de Monterrey (lat, lon)
+  lille.csv          150 puntos GPS de Lille (lat, lon)
+  requirements.txt   Dependencias
+```
 
-Los puntos se toman de los CSV, no se generan al vuelo. Si editas esas coordenadas, recarga la app.
+Los puntos se toman de los CSV. Si editas esas coordenadas, recarga la app.
 
 ## Referencias
 
